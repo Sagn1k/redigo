@@ -52,6 +52,7 @@ func (s *Server) Start() error {
 }
 
 func (s *Server) handleRawMessage(rawMsg []byte) error {
+	fmt.Println(string(rawMsg))
 	return nil
 }
 
@@ -62,7 +63,6 @@ func (s *Server) loop() {
 			if err := s.handleRawMessage(rawMsg); err != nil {
 				logrus.Error("raw message error", "err", err)
 			}
-			fmt.Println(rawMsg)
 		case <-s.quitCh:
 			return
 		case peer := <-s.addPeerCh:
